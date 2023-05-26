@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Hanime Plug</title>
-        <meta name="description" content="Hanime Plug-online shopping service for all of your needs."/>
+        <title>Shoppay</title>
+        <meta name="description" content="Shoppay shopping service for all of your needs."/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider store={store}>
