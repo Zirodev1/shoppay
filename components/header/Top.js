@@ -8,7 +8,7 @@ import UserMenu from "./UserMenu";
 
 export default function Top() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className={styles.top}>
@@ -54,7 +54,7 @@ export default function Top() {
               </div>
             </li>
             )}
-             <UserMenu/>
+             <UserMenu loggedIn={loggedIn}/>
           </li>
         </ul>
       </div>
