@@ -8,37 +8,42 @@ import UserMenu from "./UserMenu";
 
 export default function Top() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   return (
     <div className={styles.top}>
       <div className={styles.top__container}>
         <div></div>
         <ul className={styles.top__list}>
-          <li>
+          <li className={styles.li}>
             <img src="https://peteog.com/wp-content/uploads/2019/07/cropped-512px-United-states_flag_icon_round.svg_.png" alt="" srcset="" />
           <span>United States / usd</span>
           </li>
-          <li>
+          <li className={styles.li}>
             <MdSecurity/>
             <span>Buyer Protection</span>
           </li>
-          <li>
+          <li className={styles.li}>
             <span>Customer Service</span>
           </li>
-          <li>
+          <li className={styles.li}>
             <span>Help</span>
           </li>
-          <li>
+          <li className={styles.li}>
             <BsSuitHeart/>
             <Link href="/profile/wishlist">
               <span>Wish List</span>
             </Link>
           </li>
-          <li>
+          <li 
+            className={styles.li} 
+            onClick={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+          >
           {
             loggedIn ? (
-              <li>
+              <li className={styles.li}>
               <div className={styles.flex}>
                 <img src="https://mystickermania.com/cdn/stickers/cartoons/sticker_5064-230x230.png?t=09102020" alt="" />
                 <span>Lee Roy</span>
@@ -46,7 +51,7 @@ export default function Top() {
               </div>
             </li>
             ) : (
-              <li>
+              <li className={styles.li}>
               <div className={styles.flex}>
                 <RiAccountPinCircleLine/>
                 <span>Account</span>
@@ -54,7 +59,7 @@ export default function Top() {
               </div>
             </li>
             )}
-             <UserMenu loggedIn={loggedIn}/>
+             {visible && <UserMenu loggedIn={loggedIn}/>}
           </li>
         </ul>
       </div>

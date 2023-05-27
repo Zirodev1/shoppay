@@ -12,16 +12,15 @@ export default function UserMenu({ loggedIn }) {
             
             <div className={styles.flex}>
                 <img src="https://mystickermania.com/cdn/stickers/cartoons/sticker_5064-230x230.png?t=09102020" alt="" className={styles.menu__img} />
-                <div className="styles col">
+                <div className={styles.col}>
                     <span>Welcome Back,</span>
                     <h3>Lee Roy</h3>
-                    <span>Sign Out</span>
                 </div>
             </div>
             ) : (
              <div className={styles.flex}>
                 <button className={styles.btn_primary}>Register</button>
-                <button className={styles.btn_primary}>Sing In</button>
+                <button className={styles.btn_outlined}>Sing In</button>
              </div>
             )  
         }
@@ -44,10 +43,11 @@ export default function UserMenu({ loggedIn }) {
             <li>
                 <Link href='profile/settings'>Settings</Link>
             </li>
-            <li>
-                <Link href=''></Link>
-            </li>
+
         </ul>
+        {
+            loggedIn ? (<button className={styles.btn_outlined}>Sing Out</button>) : ""
+        }
         </div>
     );
 }
