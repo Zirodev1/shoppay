@@ -12,7 +12,9 @@ export default function Main() {
     <div className={styles.main}>
         <div className={styles.main__container}>
             <Link href="/">
-                    <img className={styles.logo} src="../../../logo.png" alt="" />
+                <div className={styles.logo}>
+                    <img  src="../../../logo.png" alt="" />
+                </div>
             </Link>
             <div className={styles.search}>
                 <input type="text" placeholder='search' />
