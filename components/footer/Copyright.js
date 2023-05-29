@@ -1,0 +1,48 @@
+import styles from "./styles.module.scss"
+import Link from "next/link";
+import {IoLocationSharp} from "react-icons/io5"
+
+export default function Copyright() {
+  return (
+    <div className={styles.footer__copyright}>
+            <section>@2023 SHOPYPAY ALL RIGHTS Reserved</section>
+            <section>
+                <ul>
+                    {data.map((link) =>(
+                        <li>
+                            <Link href={link.link}>{link.name}</Link>
+                        </li>
+                    ))}
+                    <li>
+                        <a href="">
+                            <IoLocationSharp /> Texas
+                        </a>
+                    </li>
+                </ul>
+            </section>
+    </div>
+  );
+}
+
+const data = [
+    {
+        name: "Privacy Center",
+        link: "",
+    },
+    {
+        name: "Privacy & Cookie Policy",
+        link: "",
+    },
+    {
+        name: "Manage Cookies",
+        link: "",
+    },
+    {
+        name: "Terms & Condition",
+        link: "",
+    },
+    {
+        name: "Copyright Notice",
+        link: "",
+    },
+];
