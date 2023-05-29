@@ -10,6 +10,11 @@
     img {
         width: 100px;
     }
+    h3 {
+        font-size: 12px;
+        font-weight: 700;
+        color: #222;
+    }
     &__links {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -26,6 +31,70 @@
             &:hover{
                 text-decoration: underline;
             }
+        }
+    }
+    &__socials {
+        section {
+            ul {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                height: 20px;
+                gap: 1rem;
+                li {
+                    font-size: 1rem;
+                    width: 20px;
+                    display: grid;
+                    place-items: center;
+                    a {
+                        color: #666;
+
+                    }
+                    a:hover {
+                        color: $blue-color;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+    &__flex {
+        display: flex;
+        margin-top: 10px;
+    }
+    &__newsletter {
+        input {
+            outline: none;
+            border: 1px solid #999;
+            flex: 1;
+            height: 40px;
+            font-size: 14px;
+            padding-left: 10px;
+        }
+        button {
+            width: 160px;
+        }
+        p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #777;
+            a {
+                color: $blue-color;
+                text-decoration: underline;
+            }
+        }
+    }
+    &__payment {
+
+    }
+    &__flexwrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 1rem;
+        img {
+            width: 70px;
+            height: 40px;
         }
     }
 }

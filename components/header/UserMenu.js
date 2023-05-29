@@ -19,8 +19,8 @@ export default function UserMenu({ loggedIn }) {
             </div>
             ) : (
              <div className={styles.flex}>
-                <button className={styles.btn_primary}>Register</button>
-                <button className={styles.btn_outlined}>Sing In</button>
+                <button className={styles.btn__primary}>Register</button>
+                <button className={styles.btn__outlined}>Sing In</button>
              </div>
             )  
         }
@@ -46,7 +46,7 @@ export default function UserMenu({ loggedIn }) {
 
         </ul>
         {
-            loggedIn ? (<button className={styles.btn_outlined}>Sing Out</button>) : ""
+            loggedIn ? (<button className={styles.btn__outlined}>Sing Out</button>) : ""
         }
         </div>
     );
