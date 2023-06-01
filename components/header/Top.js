@@ -5,10 +5,11 @@ import {BsSuitHeart} from 'react-icons/bs'
 import {RiAccountPinCircleLine, RiArrowDropDownFill} from 'react-icons/ri'
 import { useState } from "react";
 import UserMenu from "./UserMenu";
+import { useSession } from "next-auth/react";
 
 export default function Top({country}) {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const { data: session } = useSession();
   const [visible, setVisible] = useState(false);
 
   return (
@@ -17,8 +18,8 @@ export default function Top({country}) {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <img src={country.flag} alt="" srcset="" />
-          <span>{country.name} / usd</span>
+           <img src={country?.flag} alt="" srcset="" />
+          <span>{country?.name} / usd</span>
           </li>
           <li className={styles.li}>
             <MdSecurity/>
@@ -41,25 +42,24 @@ export default function Top({country}) {
             onClick={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
           >
-          {
-            loggedIn ? (
+           {session ? (
               <li className={styles.li}>
-              <div className={styles.flex}>
-                <img src="https://mystickermania.com/cdn/stickers/cartoons/sticker_5064-230x230.png?t=09102020" alt="" />
-                <span>Lee Roy</span>
-                <RiArrowDropDownFill/>
-              </div>
-            </li>
+                <div className={styles.flex}>
+                  <img src={session?.user?.image} alt="" />
+                  <span>{session?.user?.name}</span>
+                  <RiArrowDropDownFill />
+                </div>
+              </li>
             ) : (
               <li className={styles.li}>
-              <div className={styles.flex}>
-                <RiAccountPinCircleLine/>
-                <span>Account</span>
-                <RiArrowDropDownFill/>
-              </div>
-            </li>
+                <div className={styles.flex}>
+                  <RiAccountPinCircleLine />
+                  <span>Account</span>
+                  <RiArrowDropDownFill />
+                </div>
+              </li>
             )}
-             {visible && <UserMenu loggedIn={loggedIn}/>}
+            {visible && <UserMenu session={session} />}
           </li>
         </ul>
       </div>
