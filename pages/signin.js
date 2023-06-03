@@ -7,12 +7,14 @@ import { Formik, Form } from "formik"
 import * as Yup from "yup"
 import LoginInput from "@/components/inputs/loginInput"
 import { useState } from "react"
+import RoundBtn from "@/components/buttons/roundBtn"
+import { getProviders, signIn } from "next-auth/react"
 const initailvalues = {
     login_email: "",
     login_password: "",
 };
 
-export default function signin() {
+export default function signin( { providers }) {
     const [user, setUser] = useState(initailvalues);
     const { login_email, login_password } = user;
     const handleChange = (e) => {
@@ -70,14 +72,43 @@ export default function signin() {
                                     placeholder="Password"
                                     onChange={handleChange}
                                     />
+                                    <RoundBtn type="submit" text="Sing In"/>
+                                    <div className={styles.forgot}>
+                                        <Link href="/forgot">Forgot password?</Link>
+                                    </div>
                                 </Form>
                                 )
                         }
                     </Formik>
+                    <div className={styles.login__socials}>
+                        <span className={styles.or}>Or continue with</span>
+                       <div className={styles.login__socials__wrap}>
+                       {
+                            providers.map((provider) => (
+                                <div key={provider.name}>
+                                    <button
+                                        className={styles.social__btn}
+                                        onClick={() => signIn(provider.id)}
+                                    >
+                                        <img src={`../../icons/${provider.name}.png`}/>
+                                        Sing in with {provider.name}
+                                    </button>
+                                </div>
+                            ))
+                        }
+                       </div>
+                    </div>
                 </div>
             </div>
         </div>
         <Footer country="united states"/>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+    const providers = Object.values(await getProviders());
+    return {
+        props: { providers }
+    };
 }
