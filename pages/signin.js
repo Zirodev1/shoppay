@@ -42,7 +42,7 @@ export default function signin( { providers }) {
         .min(6, "Password must at least be 6 characters.")
         .max(36, "Password can't be more than 36 characters"),
         conf_password: Yup.string().required("Please confirm your password.")
-        .onOf([Yup.ref("password")], "Password must match.")
+        .oneOf([Yup.ref("password")], "Password must match.")
     })
   return (
     <>
