@@ -12,11 +12,18 @@ import { getProviders, signIn } from "next-auth/react"
 const initailvalues = {
     login_email: "",
     login_password: "",
+    name: "",
+    email: "",
+    password: "",
+    conf_password: "",
 };
 
 export default function signin( { providers }) {
     const [user, setUser] = useState(initailvalues);
-    const { login_email, login_password } = user;
+    const { login_email, login_password, name,
+        email,
+        password,
+        conf_password, } = user;
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value});
@@ -28,7 +35,15 @@ export default function signin( { providers }) {
         .email("Please enter a valid email address."),
         login_password: Yup.string().required("Please enter password.")
     })
-
+    const registerValidation = Yup.object ({
+        name: Yup.string().required("Please Enter Name.").matches(/^[aA-zZ]/,"Numbers and special characters not allowed."),
+        email: Yup.string().required("Enter your email addres.").email("Please enter a valid email address."),
+        password: Yup.string().required("Please Enter a password.")
+        .min(6, "Password must at least be 6 characters.")
+        .max(36, "Password can't be more than 36 characters"),
+        conf_password: Yup.string().required("Please confirm your password.")
+        .onOf([Yup.ref("password")], "Password must match.")
+    })
   return (
     <>
         <Header />
@@ -98,6 +113,60 @@ export default function signin( { providers }) {
                         }
                        </div>
                     </div>
+                </div>
+            </div>
+            <div className={styles.login__container}>
+                <div className={styles.login__form}>
+                    <h1>Sign Up</h1>
+                    <p>
+                        Get access to one of the best Eshopping services in the world.
+                    </p>
+                    <Formik
+                    enableReinitialize
+                    initialValues={{
+                        name,
+                        email,
+                        password,
+                        conf_password,
+                    }}
+                    validationSchema={registerValidation}
+                    >
+                        {
+                            (form)=> (
+                                <Form>
+                                    <LoginInput 
+                                    type="text"
+                                    name="name"
+                                    icon = "user" 
+                                    placeholder="Name"
+                                    onChange={handleChange}
+                                    />
+                                    <LoginInput 
+                                    type="text"
+                                    name="email"
+                                    icon = "email" 
+                                    placeholder="Email Address"
+                                    onChange={handleChange}
+                                    />
+                                    <LoginInput 
+                                    type="password"
+                                    name="password"
+                                    icon = "password" 
+                                    placeholder="Password"
+                                    onChange={handleChange}
+                                    />
+                                    <LoginInput 
+                                    type="password"
+                                    name="conf_password"
+                                    icon = "password" 
+                                    placeholder="Comfirm Password"
+                                    onChange={handleChange}
+                                    />
+                                    <RoundBtn type="submit" text="Sing Up"/>
+                                </Form>
+                                )
+                        }
+                    </Formik>
                 </div>
             </div>
         </div>
