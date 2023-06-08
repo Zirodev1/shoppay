@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { signOut, signIn } from "next-auth/react";
+import Router from "next/router";
 
 export default function UserMenu({ session }) {
   return (
@@ -21,7 +22,10 @@ export default function UserMenu({ session }) {
             ) : (
              <div className={styles.flex}>
                 <button className={styles.btn__primary}>Register</button>
-                <button className={styles.btn__outlined} onClick={() => signIn()}>Sing In</button>
+                <button className={styles.btn__outlined} onClick={() => {
+                    Router.push("/signin");
+                    //signIn();
+                }}>Sign In</button>
              </div>
             )  
         }
@@ -47,7 +51,7 @@ export default function UserMenu({ session }) {
 
         </ul>
         {
-            session ? (<button className={styles.btn__outlined} onClick={() => signOut()}>Sing Out</button>) : ""
+            session ? (<button className={styles.btn__outlined} onClick={() => signOut()}>Sign Out</button>) : ""
         }
         </div>
     );

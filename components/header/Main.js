@@ -17,7 +17,7 @@ export default function Main() {
                 </div>
             </Link>
             <div className={styles.search}>
-                <input type="text" placeholder='search' />
+                <input type="text" placeholder='Search' />
                 <div className={styles.search__icon}>
                     <RiSearch2Line/>
                 </div>

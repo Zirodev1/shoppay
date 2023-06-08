@@ -18,8 +18,8 @@ export default function Top({country}) {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-           <img src={country?.flag} alt="" srcset="" />
-          <span>{country?.name} / usd</span>
+           <img src={country?.flag} alt="" secret="" />
+          <span>{country?.name} / USD</span>
           </li>
           <li className={styles.li}>
             <MdSecurity/>
