@@ -142,7 +142,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
               }}
             >
               {(form) => (
-                <Form method="post" action="/api/auth/signin">
+                <Form method="post" action="/signin">
                   <input
                     type="hidden"
                     name="csrfToken"
@@ -167,7 +167,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
                     <span className={styles.error}>{login_error}</span>
                   )}
                   <div className={styles.forgot}>
-                    <Link href="/forgot">Forgot password?</Link>
+                    <Link href="/auth/forgot">Forgot password?</Link>
                   </div>
                 </Form>
               )}
