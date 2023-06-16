@@ -1,11 +1,12 @@
 import nc from "next-connect";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";  // Import jsonwebtoken
 import { validateEmail } from "../../../utils/validation";
 import db from "../../../utils/db";
 import User from "../../../models/User";
-import { createActivationToken, createResetToken } from "../../../utils/tokens";
 import { sendEmail } from "../../../utils/sendEmails";
 import { resetEmailTemplate } from "../../../emails/resetEmailTemplate";
+
 const handler = nc();
 
 handler.post(async (req, res) => {
@@ -16,14 +17,16 @@ handler.post(async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "This email does not exist." });
     }
-    const user_id = createResetToken({
-      id: user._id.toString(),
-    });
-    const url = `${process.env.BASE_URL}/auth/reset/${user_id}`;
+    
+    const payload = { id: user._id.toString() };  // The data you want to encode into the token
+    const secret = process.env.RESET_TOKEN_SECRET;  // The secret key for JWT
+    const token = jwt.sign(payload, secret, { expiresIn: '1h' }); // Generate the token
+
+    const url = `${process.env.BASE_URL}/auth/reset/${token}`;
     sendEmail(email, url, "", "Reset password.", resetEmailTemplate);
     await db.disconnectDb();
     res.json({
-      message: "Use the email that has been sent to you to reset your password.",
+      message: "An email has been sent for password reset.",
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
