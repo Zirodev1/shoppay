@@ -149,22 +149,28 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     right: -13px;
   }
 }
-
+.mainSwiper {
+  .swiper-slide {
+    img {
+      // object-fit: contain;
+    }
+  }
+}
 .offers_swiper {
-  max-width: 540px;
-  transform: translateX(65%);
+  max-width: 550px;
+  transform: translateX(55%);
+  
   @media (max-width: 980px) {
     transform: translateX(1%);
     max-width: 750px;
   }
-
   .swiper {
     width: 100%;
     height: 100%;
   }
-
   .swiper-slide {
     text-align: center;
+    left: 0;
     font-size: 18px;
     background: #fff;
     /* Center slide text vertically */
@@ -220,8 +226,8 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   .swiper-slide img {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100% !important;
     object-fit: cover !important;
@@ -233,7 +239,6 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .user__swiper {
   position: relative;
   margin-left: 2rem;
-  bottom: 20px;
   .swiper-slide {
     display: flex;
     align-items: center;
@@ -297,5 +302,5 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
   }
 }
-
-//-------------Swipers------
+.adminproduct__swiper {
+}
