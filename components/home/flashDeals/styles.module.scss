@@ -1,0 +1,15 @@
+.flashDeals {
+    margin: 1rem 0;
+    background: #fff;
+    &__header {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+        font-weight: 900;
+        text-transform: uppercase;
+        background-color: $yellow-color;
+        margin-bottom: 10px;
+    }
+}
