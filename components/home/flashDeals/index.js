@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 
 import { Navigation } from "swiper";
 import { flashDealsArray } from "@/data/home";
+import FlashCard from "./Card";
 
 export default function FlashDeals() {
   return (
@@ -23,15 +24,15 @@ export default function FlashDeals() {
         <Countdown/>
       </div>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        slidesPerView={5}
+        spaceBetween={20}
         navigation={true}
         modules={[Navigation]}
         className="flashDeals__swiper"      
       >
-        <div className={styles.flasdDeals__list}>{flashDealsArray.map((item) =>(
+        <div className={styles.flasdDeals__list}>{flashDealsArray.map((product, i) =>(
             <SwiperSlide>
-                
+                <FlashCard product={product} key={i}/>
             </SwiperSlide>
         ))}
         </div>

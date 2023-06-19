@@ -110,7 +110,6 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .mainSwiper,
 .user__swiper,
-.flashDeals__swiper,
 .offers_swiper {
   .swiper {
     border-radius: 10px !important;
@@ -149,17 +148,10 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     right: -13px;
   }
 }
-.mainSwiper {
-  .swiper-slide {
-    img {
-      // object-fit: contain;
-    }
-  }
-}
 .offers_swiper {
   max-width: 550px;
   transform: translateX(55%);
-  
+
   @media (max-width: 980px) {
     transform: translateX(1%);
     max-width: 750px;
@@ -301,6 +293,4 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
       height: 200px;
     }
   }
-}
-.adminproduct__swiper {
 }

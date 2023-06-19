@@ -12,4 +12,54 @@
         background-color: $yellow-color;
         margin-bottom: 10px;
     }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 1rem;
+        @media (max-width: 600px){
+            justify-content: center;
+        }
+
+    }
+}
+
+.card {
+    width: 283px;
+    height: 420px;
+    &__img {
+        border-radius: 10px;
+        position: relative;
+        width: 100%;
+        height: 320px;
+        cursor: pointer;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .flash {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 65px;
+            background: $yellow-color;
+            border-radius: 50%;
+            padding: 0.5rem;
+            span {
+                color: #333;
+                font-weight: 600;
+                font-size: 18px;
+
+            }
+            svg {
+                fill: #333;
+            }
+        }
+    }
 }
