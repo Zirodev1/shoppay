@@ -7,9 +7,13 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import Main from "@/components/home/main"
 import FlashDeals from "@/components/home/flashDeals";
 import Category from "@/components/home/category";
+import { homeImprovSwiper, women_accessories, women_dresses, women_shoes, women_swiper, gamingSwiper } from "@/data/home";
+import { useMediaQuery } from "react-responsive";
+import ProductsSwiper from "@/components/productSwiper";
 
 export default function Home( {country} ) {
   const { data: session } = useSession();
+  const isMedium = useMediaQuery({ query: "(max-width: 850px)"});
   return (
     <div>
       <Header country={country}/>
@@ -18,8 +22,18 @@ export default function Home( {country} ) {
           <Main/>
           <FlashDeals/>
           <div className={styles.home__category}>
-          <Category header="Dressess"/>
+          <Category header="Dressess" products={women_dresses} background="#5a31f4"/>
+          {
+            !isMedium && 
+            (
+          <Category header="Shoes / High Heels" products={women_shoes} background="#3c811f"/>
+            )
+          }
+          <Category header="Accessories" products={women_accessories} background="#000"/>
           </div>
+          <ProductsSwiper products={women_swiper}/>
+          <ProductsSwiper products={gamingSwiper} header="Gaming" bg="#2f82ff"/>
+          <ProductsSwiper products={homeImprovSwiper} header="Home Imporvement" bg="#5a31f4"/>
         </div>
       </div>
       <Footer country={country}/>
