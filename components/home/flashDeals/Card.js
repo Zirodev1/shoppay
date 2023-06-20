@@ -13,7 +13,7 @@ export default function FlashCard({ product }) {
         </Link>
         <div className={styles.flash}>
             <MdFlashOn/>
-            <span> {product.discount}% off</span>
+            <span> -{product.discount}%</span>
         </div>
       </div>
       <div className={styles.card__price}>
