@@ -9,9 +9,12 @@ import FlashDeals from "@/components/home/flashDeals";
 import Category from "@/components/home/category";
 import { homeImprovSwiper, women_accessories, women_dresses, women_shoes, women_swiper, gamingSwiper } from "@/data/home";
 import { useMediaQuery } from "react-responsive";
+import db from "../utils/db";
 import ProductsSwiper from "@/components/productSwiper";
+import Product from "@/models/Product";
+import ProductCard from "@/components/productCard";
 
-export default function Home( {country} ) {
+export default function Home( {country, products} ) {
   const { data: session } = useSession();
   const isMedium = useMediaQuery({ query: "(max-width: 850px)"});
   return (
@@ -34,6 +37,11 @@ export default function Home( {country} ) {
           <ProductsSwiper products={women_swiper}/>
           <ProductsSwiper products={gamingSwiper} header="Gaming" bg="#2f82ff"/>
           <ProductsSwiper products={homeImprovSwiper} header="Home Imporvement" bg="#5a31f4"/>
+          <div className={styles.products}>
+            {products.map((product) => (
+              <ProductCard product={product} key={product._id} />
+            ))}
+          </div>
         </div>
       </div>
       <Footer country={country}/>
@@ -42,6 +50,9 @@ export default function Home( {country} ) {
 }
 
 export async function getServerSideProps(){
+  db.connectDb();
+  let products = await Product.find().sort({ createdAt: -1 }).lean();
+  console.log(products)
   // let data = await axios
   //   .get("https://api.ipregistry.co/?key=7wt77rfme96c68c4")
   //   .then((res) => {
@@ -52,6 +63,7 @@ export async function getServerSideProps(){
   //   });
   return {
     props: {
+      products: JSON.parse(JSON.stringify(products)),
       //country: {name: data.name, flag: data.flag.emojitwo},
       country: {name: "United States", flag: "https://peteog.com/wp-content/uploads/2019/07/cropped-512px-United-states_flag_icon_round.svg_.png"},
     },
